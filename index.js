@@ -22,11 +22,38 @@ function flat(arr){
 
  //map
  function map(arr, cb){
+    let newArr = [];
     for(let i = 0; i< arr.length; i++){
-        cb(arr[i], i, arr)
+       newArr.push(cb(arr[i], i, arr)) 
     }  
+    return newArr
     
+ }
+let result = map([2,3], (el)=>{return(el)})
+
+
+//slice
+function slice(arr, start = 0, end = arr.length-1, ...rest){
+    let newSliceArr = [];
+
+   if(end < 0 ){
+       end = arr.length+end
+} 
+if( start < 0 && start <end){
+    start=arr.length+start
+}
+
+
+
+    for(let i = start ; i<end; i++){
+        newSliceArr.push(arr[i])
+      }
+   
+      newSliceArr = [...newSliceArr, ...rest]
+
+return newSliceArr
  }
 
 
-map([2,3], (el)=>{console.log(el)})
+ let resultSlice = slice([5,6,4,5,55,2,54,5441,4,5,55,2,54,5441], 2,5, 11,11);
+
